@@ -5,7 +5,7 @@ public:
         if(n==0) return 1;
         long long res = power(x, n/2);
         res = (res*res)%md;
-        if(n%2) res = res*x%md;
+        if(n%2) res = (res*x)%md;
         return res;
     }
     int countGoodNumbers(long long n) {
