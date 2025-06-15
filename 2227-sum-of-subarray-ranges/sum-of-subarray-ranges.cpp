@@ -20,6 +20,13 @@ public:
             s.push(i);
         }
         
+        long long min =0;
+        for(int i=0;i<n;i++){
+           long long left = i-prev[i];
+            long long right = next[i]-i;
+            min += left*right*arr[i];
+        }
+
         vector<int>prev1(n);
         vector<int>next1(n);
  
@@ -38,18 +45,13 @@ public:
             s.push(i);
         }
         
-
-        long long minSum = 0, maxSum = 0;
-        for (int i = 0; i < n; i++) {
-            long long leftMin = i - prev[i];
-            long long rightMin = next[i] - i;
-            minSum += arr[i] * leftMin * rightMin;
-
-            long long leftMax = i - prev1[i];
-            long long rightMax = next1[i] - i;
-            maxSum += arr[i] * leftMax * rightMax;
+        long long max =0;
+        for(int i=0;i<n;i++){
+           long long left = i-prev1[i];
+            long long right = next1[i]-i;
+            max += left*right*arr[i];
         }
 
-        return maxSum - minSum;
+    return max-min;
     }
 };
