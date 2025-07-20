@@ -30,11 +30,11 @@ public:
         for (int i = 0; i < v; i++) {
             if (!vis[i]) {
                 if (dfs(i, adj, vis, recStack)) {
-                    return false; // cycle detected
+                    return false; 
                 }
             }
         }
 
-        return true; // no cycle, topological order exists
+        return true; 
     }
 };
