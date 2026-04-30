@@ -1,29 +1,24 @@
 class Solution {
 public:
     string convert(string s, int numRows) {
-        if(numRows == 1 || numRows >= s.size()) return s;
-
-        vector<string> rows(numRows);
         
-        int currRow = 0;
-        bool goingDown = false;
+        if(numRows == 1 || numRows >= s.size()) return s;
+            vector<string>rows(numRows);
+        int curRows=0;
+        bool down=false;
+        for(int i=0;i<s.size();i++){
+            rows[curRows]+=s[i];
+            if(curRows== 0 || curRows==numRows-1)
+            down=!down;
 
-        for(char c : s) {
-            rows[currRow] += c;
+            curRows+=down?1:-1;
 
-            // Change direction at boundaries
-            if(currRow == 0 || currRow == numRows - 1)
-                goingDown = !goingDown;
-
-            currRow += goingDown ? 1 : -1;
+        }
+        string ans="";
+        for(int i=0;i<numRows;i++){
+            ans+=rows[i];
         }
 
-        // Combine all rows
-        string result;
-        for(string &row : rows) {
-            result += row;
-        }
-
-        return result;
+        return ans;
     }
 };
