@@ -9,9 +9,7 @@ public:
 
         int ans = 0;
 
-        for (auto it = st.begin(); it != st.end(); it++) {
-            int num = *it;
-
+        for (int num : st) {
             if (st.find(num - 1) == st.end()) {
                 int current = num;
                 int length = 1;
