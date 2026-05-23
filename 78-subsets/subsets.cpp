@@ -1,20 +1,24 @@
 class Solution {
 public:
-    vector<vector<int>> subsets(vector<int>& nums) {
-        vector<vector<int>> result;
-        vector<int> current;
-        backtrack(0, nums, current, result);
-        return result;
+
+    void backtrack(int in,vector<int>& nums,vector<vector<int>> & ans, vector<int> &temp){
+        ans.push_back(temp);
+        for(int i=in;i<nums.size();i++){
+            temp.push_back(nums[i]);
+            backtrack(i+1,nums,ans,temp);
+            temp.pop_back();
+        }
+
     }
 
-    void backtrack(int index, vector<int>& nums, vector<int>& current, vector<vector<int>>& result) {
-        result.push_back(current);  // Add current subset
 
-        for (int i = index; i < nums.size(); ++i) {
-            current.push_back(nums[i]);         // Choose nums[i]
-            backtrack(i + 1, nums, current, result); // Explore
-            current.pop_back();                 // Un-choose (backtrack)
-        }
- 
+
+
+    vector<vector<int>> subsets(vector<int>& nums) {
+        vector<vector<int>>ans;
+        vector<int>temp;
+        backtrack(0,nums,ans,temp);
+
+        return ans;
     }
 };
