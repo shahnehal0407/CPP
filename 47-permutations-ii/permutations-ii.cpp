@@ -17,7 +17,7 @@ public:
     void backtrack(vector<int>& nums, unordered_map<int,int> &freq, set<vector<int>> & ans, vector<int> &temp){
         if(temp.size()==nums.size()){ans.insert(temp); return ;}
         for(int i=0;i<nums.size();i++){
-            if(freq[nums[i]]==0)continue;
+            if(freq[nums[i]]){
 
             freq[nums[i]]--;
             temp.push_back(nums[i]);
@@ -25,6 +25,7 @@ public:
 
             freq[nums[i]]++;
             temp.pop_back();
+        }
         }
     }
 };
