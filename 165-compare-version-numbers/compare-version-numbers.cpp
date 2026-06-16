@@ -1,28 +1,30 @@
 class Solution {
 public:
-    int compareVersion(string version1, string version2) {
-        stringstream s1(version1);
-        string token;
-        vector<int>v1;
-         vector<int>v2;
-
-        while(getline(s1,token,'.')){
-            v1.push_back(stoi(token));
-        }
-            stringstream s2(version2);
-        
-        while(getline(s2,token,'.')){
-            v2.push_back(stoi(token));
-        }
-        int n = max(v1.size(),v2.size());
-        if(v1.size()<v2.size()) v1.resize(v2.size(),0);
-        else v2.resize(v1.size(),0);
+    int compareVersion(string v1, string v2) {
+        int n=v1.size();
+        int m=v2.size();
         int i=0;
-        while(i<n){
-            if(v1[i]<v2[i]){return -1;break;}
-            else if(v1[i]>v2[i]){return 1;break;}
+        int j=0;
+
+        while(i<n || j<m){
+            int n1=0;
+            int n2=0;
+
+            while(i<n && v1[i]!='.'){
+                n1=n1*10+(v1[i]-'0');
+                i++;
+            }
+            while(j<m && v2[j]!='.'){
+                n2=n2*10+(v2[j]-'0');
+                j++;
+            }
+
+            if(n1>n2)return 1;
+            if(n2>n1)return -1;
             i++;
+            j++;
         }
+
         return 0;
     }
 };
